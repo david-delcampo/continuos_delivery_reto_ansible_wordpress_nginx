@@ -1,0 +1,21 @@
+---
+
+- name: install apache2
+  apt: name=apache2 
+       state=present
+
+- name: enable mod_proxy module
+  apache2_module: name={{item}} state=present
+  with_items: {{ apache.mods }}
+  notify: restart apache
+
+- name: copy virtualhost conf
+  template: src={{ item.server_template }} 
+            dest="/etc/apache2/sites-available/{{item.server_name}}.conf"  
+  with_items: {{ apache.sites }}
+    
+  
+- name: enable virtualhost conf
+  command: a2ensite {{item.server_name}}
+  with_items: {{ apache.sites }}
+  notify: restart apache

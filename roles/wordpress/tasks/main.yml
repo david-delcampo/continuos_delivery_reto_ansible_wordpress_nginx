@@ -1,0 +1,41 @@
+---
+
+- name: Download WordPress
+  get_url: url={{ wordpress.installer_url }} 
+           dest={{ wordpress.directory }}/wordpress.tar.gz
+           sha256sum="{{ wordpress.installer_sha }}"
+
+- name: Extract archive
+  command: chdir=/srv/ /bin/tar xvf wordpress.tar.gz 
+           creates={{ wordpress.directory }}
+
+- name: Add group "wordpress"
+  group: name={{ wordpress.os_group }}
+
+- name: Add user "wordpress"
+  user: name={{ wordpress.os_user }} 
+        group={{ wordpress.os_group }} 
+        home={{ php.app_dir }}/wordpress/
+
+- name: Create WordPress database
+  mysql_db: name={{ wordpress.db_name }} 
+            state=present
+
+- name: Create WordPress database user
+  mysql_user: name={{ wordpress.db_user }} 
+              password={{ wordpress.db_password }} 
+              priv={{ wordpress.db_name }}.*:ALL 
+              host='localhost' 
+              state=present
+
+- name: Copy WordPress config file
+  template: src=wp-config.php
+            dest={{ wordpress.directory }}
+
+- name: Change ownership of WordPress installation
+  file: path={{ wordpress.directory }} 
+        owner={{ wordpress.os_user }}
+        group={{ wordpress.os_group }}
+        state=directory 
+        recurse=yes
+

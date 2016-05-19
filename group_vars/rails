@@ -1,0 +1,12 @@
+apache:
+  mods:
+    - mod_proxy
+  sites:
+    - server_name: "smrz.es"
+      server_template: "virtualhost_http_reserve.conf"
+      server_type: "reverse"
+      config_reserve:
+	proxy_dir : /rails
+	proxy_url : http://127.0.0.1:3000      
+      file_custom_log: "smrz10.es.custom.log"
+      file_error_log: "smrz10.es.error.log"

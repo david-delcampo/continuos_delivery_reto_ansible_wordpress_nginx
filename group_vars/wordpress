@@ -1,0 +1,10 @@
+wordpress:
+    installer_url: https://wordpress.org/wordpress-4.5.2.tar.gz
+    installer_sha: bab94003a5d2285f6ae76407e7b1bbb75382c36e    
+    os_user: wordpress
+    os_group: wordpress
+    db_name: wp
+    db_user: wp_user
+    db_password: {{ secrets_password_db_wordpress }}
+    directory: {{ php.app_dir }}/wordpress
+    

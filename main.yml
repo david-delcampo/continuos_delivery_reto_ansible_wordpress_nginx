@@ -1,0 +1,13 @@
+ 
+---
+- include_vars: secrets.yml
+
+- hosts: all
+  roles:
+    - base
+    
+- hosts: wordpress
+  roles:
+    - php5
+    - apache2
+    - wordpress

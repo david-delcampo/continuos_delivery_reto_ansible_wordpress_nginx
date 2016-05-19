@@ -1,0 +1,44 @@
+---
+root_password: {{secrets_password_root}}
+
+unattended_origins_patterns:
+  - "origin=${distro_id},codename=${distro_codename},label=${distro_id}-Security"
+
+users:
+  - username: david
+    name: David
+    uid: 10002
+    groups: ["sudo"]
+    password: {{secrets_password_david}}
+    ssh_key:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCokJEnYmFYS0OuNvHtpIWdrEOjy12uPJAUPUMfx6x6J1kQjgdNEZplS4YAh5iUzlzHZy1ZIRHY6EJ2heGRrg18ceJ0LPe0ldpkrYXq4d6wOMnhAOXajnPl45Z+TSWs3NfI8W1f5WvAYo3tpl+uQFPp1lsKWn3WfDhtalwIOETIHTBrpzZ2GwkO24qCyUIZ6FWb/EDJnwwOWHKMiYk8taO5ibVV9Qi9NxnzdBwOgo6oM9E5hvl7+XvWmEJGsJqws8xw6wVgBofBicOf5PONzKYjkHDYw/nC11FOLZxGpApubmV6B4ns/a5H1QcVjnDT5i2WBpuWJVPtKd4pNw24NH6815IvMpNP2Il5DSty9e6ycaFiJb+dDWImmgWKFnX5Y77jc9/F0sXIU77ciddQDpd75CMXHWV5dPKEFmOBH4jaPamL2nlWyWFS5ndTwOXhQenLHG/jZCin8li9qx6H2NVdf22NCv5MGvtuTWIFRp1lZwgvEgapkDKeIr/5raVfsIkPcy75kjiNTYlr2HQGQg1sGKG8dvm9VZHy9KtKaFpuzPv3VuhIq8PBca2L2l4YQW9CXsk4YMOAns8gTkTtI/E0R1HUFqCslodLN6OSRtfECuhXc7MWn85CKANoFK02TDNM+SH78dOWzZZLnLcthw2/6YM0LksmR/8GM9V1MigsjQ== david@cincoinfo.com"
+
+#firewall_default_rules:
+  #- port: 4949
+    #rule: allow
+    #from: 10.0.0.2
+    
+#munin_node_allowed_ips:
+  #- 10.0.0.2
+
+#logwatch_mailto: sysadmin@codingstones.com
+#logwatch_mailfrom: sysadmin@codingstones.com
+#logwatch_detail: Med
+#logwatch_disabled_services:
+  #- zz-network
+  #- zz-sys
+  #- eximstats
+  #- iptables
+
+#exim_dc_eximconfig_configtype: 'satellite'
+#exim_dc_hide_mailname: 'true'
+#exim_dc_readhost: '{{ ansible_hostname }}.codingstones.com'
+#exim_dc_smarthost: 'smtp.mailgun.com'
+
+#ssl_certificate_name: wildcard.codingstones.com,crt
+#ssl_private_key_name: wildcard.codingstones.com.key
+
+#rkhunter_report_email: sysadmin@codingstones.com
+
+#backupninja_when: 'everyday at 04:00'
+#backupninja_reportemail: sysadmin@codingstones.com

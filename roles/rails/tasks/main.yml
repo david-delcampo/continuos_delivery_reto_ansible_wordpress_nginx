@@ -1,0 +1,27 @@
+---
+- name: install package
+  apt:
+    pkg={{ item }}
+    state=present
+  with_items:
+    - ruby-full
+    - build-essential
+    - automake
+    - bison
+    - autoconf
+    - pkg-config
+    - libreadline6
+    - libreadline6-dev
+    - openssl
+    - libssl-dev
+    - curl
+    - zlib1g
+    - zlib1g-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - curl    
+    
+- name: install Bundler
+  command: gem install bundler
